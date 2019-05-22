@@ -1,0 +1,33 @@
+import pandas_datareader.data as web
+import datetime as dt
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+start = dt.date(2018,1,1)
+end = dt.date(2019,3,24)
+
+tickerList = [
+    '2413.T',
+    '3092.T',
+    '3660.T',
+    '3932.T',
+    '3993.T',
+    '4384.T',
+    '8919.T',
+    '9449.T'
+    ]
+
+f = web.DataReader(tickerList, 'yahoo', start, end)
+
+print(f)
+
+f_new = f.drop(columns=['High', 'Low', 'Open', 'Close', 'Volume'])
+
+f_new.to_csv('2nd.csv')
+
+df = pd.read_csv('2nd.csv')
+
+print(df)
+
+
